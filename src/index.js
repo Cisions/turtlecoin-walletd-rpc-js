@@ -1,1 +1,1 @@
-export * from './turtlecoin-walletd.js'
+export * from './walletd.js'
