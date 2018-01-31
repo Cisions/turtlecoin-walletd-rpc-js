@@ -1,10 +1,10 @@
 const buildRPC = (id, method, params) => {
-  return {
+  return JSON.stringify({
     jsonrpc  : "2.0",
     id,
     method,
     ...(params && { params })
-  }
+  })
 }
 
 export function reset(id, params) {
@@ -59,34 +59,34 @@ export function getUnconfirmedTransactionHashes(id, params) {
   return buildRPC(id, "getUnconfirmedTransactionHashes", params)
 }
 
-export function getTransaction() {
+export function getTransaction(id, params) {
   return buildRPC(id, "getTransaction", params)
 }
 
-export function sendTransaction() {
+export function sendTransaction(id, params) {
   return buildRPC(id, "sendTransaction", params)
 }
 
-export function createDelayedTransaction() {
+export function createDelayedTransaction(id, params) {
   return buildRPC(id, "createDelayedTransaction", params)
 }
 
-export function getDelayedTransactionHashes() {
+export function getDelayedTransactionHashes(id, params) {
   return buildRPC(id, "getDelayedTransactionHashes", params)
 }
 
-export function deleteDelayedTransaction() {
+export function deleteDelayedTransaction(id, params) {
   return buildRPC(id, "deleteDelayedTransaction", params)
 }
 
-export function sendDelayedTransaction() {
+export function sendDelayedTransaction(id, parmas) {
   return buildRPC(id, "sendDelayedTransaction", params)
 }
 
-export function sendFusionTransaction() {
+export function sendFusionTransaction(id, params) {
   return buildRPC(id, "sendFusionTransaction", params)
 }
 
-export function estimateFusion() {
+export function estimateFusion(id, params) {
   return buildRPC(id, "estimateFusion", params)
 }
