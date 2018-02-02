@@ -2,10 +2,11 @@ import * as rpc           from './rpcBuilders'
 import { buildXHR }       from './buildXHR'
 
 class TurtleCoinWalletd {
-  constructor(host, port, id) {
-    this.host = host
-    this.port = port
-    this.id   = id
+  constructor(host, port, id, rpcPassword) {
+    this.host        = host
+    this.port        = port
+    this.id          = id
+    this.rpcPassword = rpcPassword
   }
 
   sendXHR(payload) {
@@ -17,6 +18,7 @@ class TurtleCoinWalletd {
     this.sendXHR(
       rpc.reset(
         this.id,
+        this.rpcPassword,
         viewSecretKey ? { viewSecretKey }
         : null
       )
@@ -25,13 +27,13 @@ class TurtleCoinWalletd {
 
   save() {
     this.sendXHR(
-      rpc.save(this.id)
+      rpc.save(this.id, this.rpcPassword)
     )
   }
 
   getViewKey() {
     this.sendXHR(
-      rpc.getViewKey(this.id)
+      rpc.getViewKey(this.id, this.rpcPassword)
     )
   }
 
@@ -39,6 +41,7 @@ class TurtleCoinWalletd {
     this.sendXHR(
       rpc.getSpendKeys(
         this.id,
+        this.rpcPassword,
         { address }
       )
     )
@@ -46,13 +49,13 @@ class TurtleCoinWalletd {
 
   getStatus() {
     this.sendXHR(
-      rpc.getStatus(this.id)
+      rpc.getStatus(this.id, this.rpcPassword)
     )
   }
 
   getAddresses() {
     this.sendXHR(
-      rpc.getAddresses(this.id)
+      rpc.getAddresses(this.id, this.rpcPassword)
     )
   }
 
@@ -60,6 +63,7 @@ class TurtleCoinWalletd {
     this.sendXHR(
       rpc.createAddress(
         this.id,
+        this.rpcPassword,
         {
           ...(secretSpendKey && { secretSpendKey }),
           ...(publicSpendKey && { publicSpendKey })
@@ -73,6 +77,7 @@ class TurtleCoinWalletd {
     this.sendXHR(
       rpc.deleteAddress(
         this.id,
+        this.rpcPassword,
         { address }
       )
     )
@@ -81,6 +86,7 @@ class TurtleCoinWalletd {
     this.sendXHR(
       rpc.getBalance(
         this.id,
+        this.rpcPassword,
         address ? { address }
         : null
       )
@@ -91,6 +97,7 @@ class TurtleCoinWalletd {
     this.sendXHR(
       rpc.getBlockHashes(
         this.id,
+        this.rpcPassword,
         {
           firstBlockIndex,
           blockCount
@@ -109,6 +116,7 @@ class TurtleCoinWalletd {
     this.sendXHR(
       rpc.getTransactionHashes(
         this.id,
+        this.rpcPassword,
         {
           blockCount,
           ...(firstBlockIndex && { firstBlockIndex }),
@@ -129,6 +137,7 @@ class TurtleCoinWalletd {
     this.sendXHR(
       rpc.getTransactions(
         this.id,
+        this.rpcPassword,
         {
           blockCount,
           ...(firstBlockIndex && { firstBlockIndex }),
@@ -144,6 +153,7 @@ class TurtleCoinWalletd {
     this.sendXHR(
       rpc.getUnconfirmedTransactionHashes(
         this.id,
+        this.rpcPassword,
         address ? { address }
         : null
       )
@@ -153,6 +163,7 @@ class TurtleCoinWalletd {
     this.sendXHR(
       rpc.getTransaction(
         this.id,
+        this.rpcPassword,
         { transactionHash }
       )
     )
@@ -171,6 +182,7 @@ class TurtleCoinWalletd {
     this.sendXHR(
       rpc.sendTransaction(
         this.id,
+        this.rpcPassword,
         {
           anonymity,
           transfers,
@@ -189,6 +201,7 @@ class TurtleCoinWalletd {
     this.sendXHR(
       rpc.createDelayedTransaction(
         this.id,
+        this.rpcPassword,
         {
           anonymity,
           transfers,
@@ -206,7 +219,8 @@ class TurtleCoinWalletd {
   getDelayedTransactionHashes() {
     this.sendXHR(
       rpc.getDelayedTransactionHashes(
-        this.id
+        this.id,
+        this.rpcPassword
       )
     )
   }
@@ -215,6 +229,7 @@ class TurtleCoinWalletd {
     this.sendXHR(
       rpc.deleteDelayedTransaction(
         this.id,
+        this.rpcPassword,
         { transactionHash }
       )
     )
@@ -224,6 +239,7 @@ class TurtleCoinWalletd {
     this.sendXHR(
       rpc.sendDelayedTransaction(
         this.id,
+        this.rpcPassword,
         { transactionHash }
       )
     )
@@ -237,6 +253,7 @@ class TurtleCoinWalletd {
   ) {
     this.sendXHR(
       this.id,
+      this.rpcPassword,
       {
         threshold,
         anonymity,
@@ -249,6 +266,7 @@ class TurtleCoinWalletd {
   estimateFusion(threshold, addresses) {
     this.sendXHR(
       this.id,
+      this.rpcPassword,
       {
         threshold,
         ...(addresses && { addresses })
