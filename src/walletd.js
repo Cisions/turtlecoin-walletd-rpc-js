@@ -8,9 +8,17 @@ class TurtleCoinWalletd {
     this.id   = id
   }
 
-  sendXHR(payload) {
-    buildXHR(this.host, this.port)
-    .send(payload)
+  sendXHR(payload, success, error) {
+    return new Promise((resolve, reject) => {
+      buildXHR(
+        this.host,
+        this.port,
+        (callback ? callback  : resolve),
+        (error    ? error     : reject)
+      )
+      .send(payload)
+
+    })
   }
 
   reset(viewSecretKey) {
