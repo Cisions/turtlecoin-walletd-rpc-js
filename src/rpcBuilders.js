@@ -13,7 +13,10 @@ export function reset(
   rpcPassword,
   params
 ) {
-  return buildRPC"reset", id, rpcPassword, params)
+  return buildRPC(
+    "reset",
+    ...arguments
+  )
 }
 
 export function save(
@@ -21,7 +24,10 @@ export function save(
   rpcPassword,
   params
 ) {
-  return buildRPC"save", id, rpcPassword, params)
+  return buildRPC(
+    "save",
+    ...arguments
+  )
 }
 
 export function getViewKey(
@@ -29,7 +35,10 @@ export function getViewKey(
   rpcPassword,
   params
 ) {
-  return buildRPC"getViewKey", id, rpcPassword, params)
+  return buildRPC(
+    "getViewKey",
+    ...arguments
+  )
 }
 
 export function getSpendKeys(
@@ -37,7 +46,10 @@ export function getSpendKeys(
   rpcPassword,
   params
 ) {
-  return buildRPC"getSpendKeys", id, rpcPassword, params)
+  return buildRPC(
+    "getSpendKeys",
+    ...arguments
+  )
 }
 
 export function getStatus(
@@ -45,7 +57,10 @@ export function getStatus(
   rpcPassword,
   params
 ) {
-  return buildRPC"getStatus", id, rpcPassword, params)
+  return buildRPC(
+    "getStatus",
+    ...arguments
+  )
 }
 
 export function getAddresses(
@@ -53,7 +68,10 @@ export function getAddresses(
   rpcPassword,
   params
 ) {
-  return buildRPC"getAddresses", id, rpcPassword, params)
+  return buildRPC(
+    "getAddresses",
+    ...arguments
+  )
 }
 
 export function createAddress(
@@ -61,7 +79,9 @@ export function createAddress(
   rpcPassword,
   params
 ) {
-  return builRPC"createAddress", id, rpcPassword, params)
+  return builRPC"createAddress",
+    ...arguments
+  )
 }
 
 export function deleteAddress(
@@ -69,7 +89,10 @@ export function deleteAddress(
   rpcPassword,
   params
 ) {
-  return buildRPC"deleteAddress", id, rpcPassword, params)
+  return buildRPC(
+    "deleteAddress",
+    ...arguments
+  )
 }
 
 export function getBalance(
@@ -77,7 +100,10 @@ export function getBalance(
   rpcPassword,
   params
 ) {
-  return buildRPC"getBalance", id, rpcPassword, params)
+  return buildRPC(
+    "getBalance",
+    ...arguments
+  )
 }
 
 export function getBlockHashes(
@@ -85,7 +111,10 @@ export function getBlockHashes(
   rpcPassword,
   params
 ) {
-  return buildRPC"getBlockHashes", id, rpcPassword, params)
+  return buildRPC(
+    "getBlockHashes",
+    ...arguments
+  )
 }
 
 export function getTransactionHashes(
@@ -93,7 +122,10 @@ export function getTransactionHashes(
   rpcPassword,
   params
 ) {
-  return buildRPC"getTransactionHashes", id, rpcPassword, params)
+  return buildRPC(
+    "getTransactionHashes",
+    ...arguments
+  )
 }
 
 export function getTransactions(
@@ -101,7 +133,10 @@ export function getTransactions(
   rpcPassword,
   params
 ) {
-  return buildRPC"getTransactions", id, rpcPassword, params)
+  return buildRPC(
+    "getTransactions",
+    ...arguments
+  )
 }
 
 export function getUnconfirmedTransactionHashes(
@@ -109,7 +144,10 @@ export function getUnconfirmedTransactionHashes(
   rpcPassword,
   params
 ) {
-  return buildRPC"getUnconfirmedTransactionHashes", id, rpcPassword, params)
+  return buildRPC(
+    "getUnconfirmedTransactionHashes",
+    ...arguments
+  )
 }
 
 export function getTransaction(
@@ -117,7 +155,10 @@ export function getTransaction(
   rpcPassword,
   params
 ) {
-  return buildRPC"getTransaction", id, rpcPassword, params)
+  return buildRPC(
+    "getTransaction",
+    ...arguments
+  )
 }
 
 export function sendTransaction(
@@ -125,7 +166,10 @@ export function sendTransaction(
   rpcPassword,
   params
 ) {
-  return buildRPC"sendTransaction", id, rpcPassword, params)
+  return buildRPC(
+    "sendTransaction",
+    ...arguments
+  )
 }
 
 export function createDelayedTransaction(
@@ -133,7 +177,10 @@ export function createDelayedTransaction(
   rpcPassword,
   params
 ) {
-  return buildRPC"createDelayedTransaction", id, rpcPassword, params)
+  return buildRPC(
+    "createDelayedTransaction",
+    ...arguments
+  )
 }
 
 export function getDelayedTransactionHashes(
@@ -141,7 +188,10 @@ export function getDelayedTransactionHashes(
   rpcPassword,
   params
 ) {
-  return buildRPC"getDelayedTransactionHashes", id, rpcPassword, params)
+  return buildRPC(
+    "getDelayedTransactionHashes",
+    ...arguments
+  )
 }
 
 export function deleteDelayedTransaction(
@@ -149,7 +199,10 @@ export function deleteDelayedTransaction(
   rpcPassword,
   params
 ) {
-  return buildRPC"deleteDelayedTransaction", id, rpcPassword, params)
+  return buildRPC(
+    "deleteDelayedTransaction",
+    ...arguments
+  )
 }
 
 export function sendDelayedTransaction(
@@ -157,7 +210,10 @@ export function sendDelayedTransaction(
   rpcPassword,
   params
 ) {
-  return buildRPC"sendDelayedTransaction", id, rpcPassword, params)
+  return buildRPC(
+    "sendDelayedTransaction",
+    ...arguments
+  )
 }
 
 export function sendFusionTransaction(
@@ -165,7 +221,10 @@ export function sendFusionTransaction(
   rpcPassword,
   params
 ) {
-  return buildRPC"sendFusionTransaction", id, rpcPassword, params)
+  return buildRPC(
+    "sendFusionTransaction",
+    ...arguments
+  )
 }
 
 export function estimateFusion(
@@ -173,5 +232,8 @@ export function estimateFusion(
   rpcPassword,
   params
 ) {
-  return buildRPC"estimateFusion", id, rpcPassword, params)
+  return buildRPC(
+    "estimateFusion",
+    ...arguments
+  )
 }
