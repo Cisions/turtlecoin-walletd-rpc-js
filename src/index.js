@@ -1,1 +1,1 @@
-export * from './walletd.js'
+export * from './TurtleCoinWalletdRPC'

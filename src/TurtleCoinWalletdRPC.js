@@ -1,12 +1,12 @@
 import * as rpc           from './rpcBuilders'
 import { buildXHR }       from './buildXHR'
 
-class TurtleCoinWalletd {
-  constructor(host, port, id, rpcPassword) {
+export class TurtleCoinWalletd {
+  constructor(host, port, rpcPassword) {
     this.host        = host
     this.port        = port
-    this.id          = id
     this.rpcPassword = rpcPassword
+    this.id          = 0
   }
 
   sendXHR(payload, success, error) {
@@ -18,6 +18,8 @@ class TurtleCoinWalletd {
         (error    ? error     : reject)
       )
       .send(payload)
+
+      this.id++
 
     })
   }
