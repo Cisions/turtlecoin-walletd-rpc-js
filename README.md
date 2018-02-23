@@ -42,7 +42,6 @@ var walletd = new TurtleCoinWalletd(
   id
 )
 ```
-https://www.npmjs.com/package/node-datetime
 
 ### Interacting with the RPC Client
 

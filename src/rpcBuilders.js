@@ -3,7 +3,7 @@ const buildRPC = (method, id, password, params) => {
     jsonrpc  : "2.0",
     method,
     id,
-    ...(password && { password})
+    ...(password && { password}),
     ...(params    && { params })
   })
 }
@@ -79,7 +79,8 @@ export function createAddress(
   rpcPassword,
   params
 ) {
-  return builRPC"createAddress",
+  return builRPC(
+    "createAddress",
     ...arguments
   )
 }

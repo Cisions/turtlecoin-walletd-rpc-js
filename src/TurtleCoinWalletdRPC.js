@@ -14,7 +14,7 @@ export class TurtleCoinWalletd {
       buildXHR(
         this.host,
         this.port,
-        (callback ? callback  : resolve),
+        (success  ? success   : resolve),
         (error    ? error     : reject)
       )
       .send(payload)
