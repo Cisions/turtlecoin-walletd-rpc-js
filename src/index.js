@@ -1,1 +1,1 @@
-export * from './TurtleCoinWalletdRPC'
+export default { TurtleCoinWalletd } from './TurtleCoinWalletdRPC'

@@ -10,8 +10,8 @@ const buildXHR = (host, port, success, error) => {
     success(xhr.response)
   }
 
-  xhr.onerror = () => {
-    error()
+  xhr.onerror = (err) => {
+    error(err)
   }
 
   return xhr
