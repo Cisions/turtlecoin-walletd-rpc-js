@@ -25,7 +25,7 @@ export class TurtleCoinWalletd {
   }
 
   reset(viewSecretKey) {
-    this.sendXHR(
+    return this.sendXHR(
       rpc.reset(
         this.id,
         this.rpcPassword,
@@ -36,19 +36,19 @@ export class TurtleCoinWalletd {
   }
 
   save() {
-    this.sendXHR(
+    return this.sendXHR(
       rpc.save(this.id, this.rpcPassword)
     )
   }
 
   getViewKey() {
-    this.sendXHR(
+    return this.sendXHR(
       rpc.getViewKey(this.id, this.rpcPassword)
     )
   }
 
   getSpendKeys(address) {
-    this.sendXHR(
+    return this.sendXHR(
       rpc.getSpendKeys(
         this.id,
         this.rpcPassword,
@@ -58,19 +58,19 @@ export class TurtleCoinWalletd {
   }
 
   getStatus() {
-    this.sendXHR(
+    return this.sendXHR(
       rpc.getStatus(this.id, this.rpcPassword)
     )
   }
 
   getAddresses() {
-    this.sendXHR(
+    return this.sendXHR(
       rpc.getAddresses(this.id, this.rpcPassword)
     )
   }
 
   createAddress(secretSpendKey, publicSpendKey) {
-    this.sendXHR(
+    return this.sendXHR(
       rpc.createAddress(
         this.id,
         this.rpcPassword,
@@ -84,7 +84,7 @@ export class TurtleCoinWalletd {
   }
 
   deleteAddress(address) {
-    this.sendXHR(
+    return this.sendXHR(
       rpc.deleteAddress(
         this.id,
         this.rpcPassword,
@@ -93,7 +93,7 @@ export class TurtleCoinWalletd {
     )
   }
   getBalance(address) {
-    this.sendXHR(
+    return this.sendXHR(
       rpc.getBalance(
         this.id,
         this.rpcPassword,
@@ -104,7 +104,7 @@ export class TurtleCoinWalletd {
   }
 
   getBlockHashes(firstBlockIndex, blockCount) {
-    this.sendXHR(
+    return this.sendXHR(
       rpc.getBlockHashes(
         this.id,
         this.rpcPassword,
@@ -123,7 +123,7 @@ export class TurtleCoinWalletd {
     addresses,
     paymentId
   ) {
-    this.sendXHR(
+    return this.sendXHR(
       rpc.getTransactionHashes(
         this.id,
         this.rpcPassword,
@@ -144,7 +144,7 @@ export class TurtleCoinWalletd {
     addresses,
     paymentId
   ) {
-    this.sendXHR(
+    return this.sendXHR(
       rpc.getTransactions(
         this.id,
         this.rpcPassword,
@@ -160,7 +160,7 @@ export class TurtleCoinWalletd {
   }
 
   getUnconfirmedTransactionHashes(addresses) {
-    this.sendXHR(
+    return this.sendXHR(
       rpc.getUnconfirmedTransactionHashes(
         this.id,
         this.rpcPassword,
@@ -170,7 +170,7 @@ export class TurtleCoinWalletd {
     )
   }
   getTransaction(transactionHash) {
-    this.sendXHR(
+    return this.sendXHR(
       rpc.getTransaction(
         this.id,
         this.rpcPassword,
@@ -189,7 +189,7 @@ export class TurtleCoinWalletd {
     paymentId,
     changeAddress
   ) {
-    this.sendXHR(
+    return this.sendXHR(
       rpc.sendTransaction(
         this.id,
         this.rpcPassword,
@@ -208,7 +208,7 @@ export class TurtleCoinWalletd {
   }
 
   createDelayedTransaction() {
-    this.sendXHR(
+    return this.sendXHR(
       rpc.createDelayedTransaction(
         this.id,
         this.rpcPassword,
@@ -227,7 +227,7 @@ export class TurtleCoinWalletd {
   }
 
   getDelayedTransactionHashes() {
-    this.sendXHR(
+    return this.sendXHR(
       rpc.getDelayedTransactionHashes(
         this.id,
         this.rpcPassword
@@ -236,7 +236,7 @@ export class TurtleCoinWalletd {
   }
 
   deleteDelayedTransaction(transactionHash) {
-    this.sendXHR(
+    return this.sendXHR(
       rpc.deleteDelayedTransaction(
         this.id,
         this.rpcPassword,
@@ -246,7 +246,7 @@ export class TurtleCoinWalletd {
   }
 
   sendDelayedTransaction(transactionHash) {
-    this.sendXHR(
+    return this.sendXHR(
       rpc.sendDelayedTransaction(
         this.id,
         this.rpcPassword,
@@ -261,7 +261,7 @@ export class TurtleCoinWalletd {
     addresses,
     destinationAddress
   ) {
-    this.sendXHR(
+    return this.sendXHR(
       this.id,
       this.rpcPassword,
       {
@@ -274,7 +274,7 @@ export class TurtleCoinWalletd {
   }
 
   estimateFusion(threshold, addresses) {
-    this.sendXHR(
+    return this.sendXHR(
       this.id,
       this.rpcPassword,
       {
