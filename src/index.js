@@ -1,1 +1,2 @@
-export default { TurtleCoinWalletd } from './TurtleCoinWalletdRPC'
+import { TurtleCoinWalletd } from './TurtleCoinWalletdRPC'
+export default TurtleCoinWalletd
