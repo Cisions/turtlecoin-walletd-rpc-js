@@ -20,6 +20,9 @@
   "babel": {
     "presets": [
       "env"
+    ],
+    "plugins": [
+      "transform-object-rest-spread"
     ]
   },
   "author": "bebop",
@@ -28,6 +31,7 @@
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "chai": "^4.1.2",
     "mocha": "^5.0.0",
