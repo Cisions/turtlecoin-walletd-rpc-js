@@ -79,7 +79,7 @@ export function createAddress(
   rpcPassword,
   params
 ) {
-  return builRPC(
+  return buildRPC(
     "createAddress",
     ...arguments
   )
