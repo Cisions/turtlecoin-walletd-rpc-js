@@ -164,7 +164,7 @@ export class TurtleCoinWalletd {
       rpc.getUnconfirmedTransactionHashes(
         this.id,
         this.rpcPassword,
-        address ? { address }
+        addresses ? { addresses }
         : null
       )
     )
