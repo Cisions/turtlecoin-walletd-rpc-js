@@ -48,3 +48,15 @@ Note that `hostname` must contain `http://` prefix.
 ### Using the RPC Client
 
 Instance methods of TurtleCoinWalletd correspond to the JSON RPC method calls. Each method initiates an asynci HTTP request to the walletd daemon and returns a `Promise` of the HTTP response. Optional success and error callbacks may be provided, or calls may be written in promise style with `.then()` and `.catch()` methods
+
+## Contribute
+
+Fork the repo at <http://github.com/turtlecoin/turtlecoin-walletd-rpc-js>, create a feature branch  and subbmit PRs from feature branch to `master`
+
+## Bugs/Issues/Feature Requests
+
+File issues at <http://github.com/turtlecoin/turtlecoin-walletd-rpc-js/issues>
+
+## Thanks
+
+Big thanks to @fexra for bughunting, testing, feedback and other help.
