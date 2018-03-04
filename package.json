@@ -16,7 +16,7 @@
     "init": "mkdir dist",
     "clean": "rm -rf dist",
     "prebuild": "npm run clean && npm run init",
-    "build": "babel ./src ./lib -d ./dist --ignore spec.js",
+    "build": "babel ./src -d ./dist --ignore spec.js",
     "pretest": "npm run build",
     "test": "mocha --compilers js:babel-core/register ./src/**/*.spec.js",
     "test:single": "mocha --compilers js:babel-core/register"
