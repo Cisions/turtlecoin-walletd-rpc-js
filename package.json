@@ -1,6 +1,6 @@
 {
   "name": "turtlecoin-walletd-rpc-js",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Wrapper for the TurtleCoin walletd daemon JSON-RPC interface",
   "main": "./dist/index.js",
   "files": [
