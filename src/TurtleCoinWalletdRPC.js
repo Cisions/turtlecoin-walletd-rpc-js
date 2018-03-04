@@ -1,5 +1,5 @@
 import * as rpc           from './rpcBuilders'
-import popsicle           from 'popsicle'
+import { get }            from 'popsicle'
 
 export class TurtleCoinWalletd {
   constructor(host, port, rpcPassword) {
@@ -20,8 +20,7 @@ export class TurtleCoinWalletd {
       console.log(payload)
       console.log('************')
 
-      popsicle
-        .get(url)
+      get(url)
         .then(res => {
           console.log('************')
           console.log (`Request (id: ${id}) to walletd HTTP JSON-RPC interface successful!`)
