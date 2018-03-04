@@ -41,6 +41,6 @@
     "mocha": "^5.0.0"
   },
   "dependencies": {
-    "browser-request": "^0.3.3"
+    "popsicle": "^9.2.0"
   }
 }
