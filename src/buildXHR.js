@@ -7,7 +7,7 @@ const buildXHR = (host, port, success, error) => {
   xhr.setRequestHeader("Accept", "application/json")
 
   xhr.onload = () => {
-    success(JSON.parse(xhr.responseText)
+    success(JSON.parse(xhr.responseText))
   }
 
   xhr.onerror = (err) => {
