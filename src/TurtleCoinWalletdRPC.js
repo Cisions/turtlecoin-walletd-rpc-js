@@ -1,5 +1,5 @@
 import * as rpc           from './rpcBuilders'
-import { buildXHR }       from './buildXHR'
+import popsicle           from 'popsicle'
 
 export class TurtleCoinWalletd {
   constructor(host, port, rpcPassword) {
@@ -11,13 +11,35 @@ export class TurtleCoinWalletd {
 
   sendXHR(payload, success, error) {
     return new Promise((resolve, reject) => {
-      buildXHR(
-        this.host,
-        this.port,
-        (success  ? success   : resolve),
-        (error    ? error     : reject)
-      )
-      .send(payload)
+      let url = `${this.host}:${this.port}/json_rpc`,
+          id  = this.id
+
+      console.log('************')
+      console.log(`Sending HTTP request to walletd JSON-RPC interface at ${url}...`)
+      console.log(`Request (id: ${id}):`)
+      console.log(payload)
+      console.log('************')
+
+      popsicle
+        .get(url)
+        .then(res => {
+          console.log('************')
+          console.log (`Request (id: ${id}) to walletd HTTP JSON-RPC interface successful!`)
+          console.log(res.status)
+          console.log(res.body)
+          console.log(res.headers)
+          console.log('************')
+
+          success  ? success(res.body) : resolve(res.body)
+        })
+        .catch(err => {
+          console.log('************')
+          console.log(`Error sending request (id: ${id})`)
+          console.log(err)
+          console.log('************')
+
+          error ? error(err) : resolve(err)
+        })
 
       this.id++
 
