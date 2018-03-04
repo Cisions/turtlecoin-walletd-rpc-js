@@ -26,7 +26,7 @@
     ]
   },
   "author": "bebop",
-  "license": "MIT",
+  "license": "Beerware",
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
