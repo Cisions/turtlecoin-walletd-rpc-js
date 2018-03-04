@@ -41,6 +41,6 @@
     "mocha": "^5.0.0"
   },
   "dependencies": {
-    "xmlhttprequest": "file:lib/node-XMLHttpRequest"
+    "xmlhttprequest": "^1.8.0"
   }
 }
