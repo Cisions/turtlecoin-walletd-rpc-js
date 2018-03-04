@@ -45,52 +45,62 @@ export class TurtleCoinWalletd {
     })
   }
 
-  reset(viewSecretKey) {
+  reset(viewSecretKey, sucess, error) {
     return this.sendXHR(
       rpc.reset(
         this.id,
         this.rpcPassword,
         viewSecretKey ? { viewSecretKey }
         : null
-      )
+      ),
+      success,
+      error
     )
   }
 
-  save() {
+  save(success, error) {
     return this.sendXHR(
-      rpc.save(this.id, this.rpcPassword)
+      rpc.save(this.id, this.rpcPassword),
+      success,
+      error
     )
   }
 
-  getViewKey() {
+  getViewKey(success, error) {
     return this.sendXHR(
-      rpc.getViewKey(this.id, this.rpcPassword)
+      rpc.getViewKey(this.id, this.rpcPassword),
+      success, error
     )
   }
 
-  getSpendKeys(address) {
+  getSpendKeys(address, success, error) {
     return this.sendXHR(
       rpc.getSpendKeys(
         this.id,
         this.rpcPassword,
         { address }
-      )
+      ),
+      success,
+      error
     )
   }
 
-  getStatus() {
+  getStatus(success, error) {
     return this.sendXHR(
-      rpc.getStatus(this.id, this.rpcPassword)
+      rpc.getStatus(this.id, this.rpcPassword),
+      success,
+      error
     )
   }
 
-  getAddresses() {
+  getAddresses(success, error) {
     return this.sendXHR(
-      rpc.getAddresses(this.id, this.rpcPassword)
+      rpc.getAddresses(this.id, this.rpcPassword),
+      success, error
     )
   }
 
-  createAddress(secretSpendKey, publicSpendKey) {
+  createAddress(secretSpendKey, publicSpendKey, success, error) {
     return this.sendXHR(
       rpc.createAddress(
         this.id,
@@ -100,31 +110,37 @@ export class TurtleCoinWalletd {
           ...(publicSpendKey && { publicSpendKey })
 
         }
-      )
+      ),
+      success,
+      error
     )
   }
 
-  deleteAddress(address) {
+  deleteAddress(address, success, error) {
     return this.sendXHR(
       rpc.deleteAddress(
         this.id,
         this.rpcPassword,
         { address }
-      )
+      ),
+      success,
+      error
     )
   }
-  getBalance(address) {
+  getBalance(address, success, error) {
     return this.sendXHR(
       rpc.getBalance(
         this.id,
         this.rpcPassword,
         address ? { address }
         : null
-      )
+      ),
+      success,
+      error
     )
   }
 
-  getBlockHashes(firstBlockIndex, blockCount) {
+  getBlockHashes(firstBlockIndex, blockCount, success, error) {
     return this.sendXHR(
       rpc.getBlockHashes(
         this.id,
@@ -133,7 +149,9 @@ export class TurtleCoinWalletd {
           firstBlockIndex,
           blockCount
         }
-      )
+      ),
+      success,
+      error
     )
   }
 
@@ -142,7 +160,9 @@ export class TurtleCoinWalletd {
     firstBlockIndex,
     blockHash,
     addresses,
-    paymentId
+    paymentId,
+    success,
+    error
   ) {
     return this.sendXHR(
       rpc.getTransactionHashes(
@@ -155,7 +175,9 @@ export class TurtleCoinWalletd {
           ...(addresses       && { addresses }),
           ...(paymentId       && { paymentId })
         }
-      )
+      ),
+      success,
+      error
     )
   }
   getTransactions(
@@ -163,7 +185,9 @@ export class TurtleCoinWalletd {
     firstBlockIndex,
     blockHash,
     addresses,
-    paymentId
+    paymentId,
+    success,
+    error
   ) {
     return this.sendXHR(
       rpc.getTransactions(
@@ -176,27 +200,34 @@ export class TurtleCoinWalletd {
           ...(addresses       && { addresses }),
           ...(paymentId       && { paymentId })
         }
-      )
+      ),
+      success,
+      error
     )
   }
 
-  getUnconfirmedTransactionHashes(addresses) {
+  getUnconfirmedTransactionHashes(addresses, success, error) {
     return this.sendXHR(
       rpc.getUnconfirmedTransactionHashes(
         this.id,
         this.rpcPassword,
         addresses ? { addresses }
         : null
-      )
+      ),
+      success,
+      error
     )
   }
-  getTransaction(transactionHash) {
+
+  getTransaction(transactionHash, success, error) {
     return this.sendXHR(
       rpc.getTransaction(
         this.id,
         this.rpcPassword,
         { transactionHash }
-      )
+      ),
+      success,
+      error
     )
   }
 
@@ -208,7 +239,9 @@ export class TurtleCoinWalletd {
     unlockTime,
     extra,
     paymentId,
-    changeAddress
+    changeAddress,
+    success,
+    error
   ) {
     return this.sendXHR(
       rpc.sendTransaction(
@@ -224,11 +257,13 @@ export class TurtleCoinWalletd {
           ...(paymentId  && { paymentId }),
           ...(changeAddress && { changeAddress })
         }
-      )
+      ),
+      success,
+      error
     )
   }
 
-  createDelayedTransaction() {
+  createDelayedTransaction(success, error) {
     return this.sendXHR(
       rpc.createDelayedTransaction(
         this.id,
@@ -243,36 +278,44 @@ export class TurtleCoinWalletd {
           ...(paymentId  && { paymentId }),
           ...(changeAddress && { changeAddress })
         }
-      )
+      ),
+      sucess,
+      error
     )
   }
 
-  getDelayedTransactionHashes() {
+  getDelayedTransactionHashes(success, error) {
     return this.sendXHR(
       rpc.getDelayedTransactionHashes(
         this.id,
         this.rpcPassword
-      )
+      ),
+      success,
+      error
     )
   }
 
-  deleteDelayedTransaction(transactionHash) {
+  deleteDelayedTransaction(transactionHash, success, error) {
     return this.sendXHR(
       rpc.deleteDelayedTransaction(
         this.id,
         this.rpcPassword,
         { transactionHash }
-      )
+      ),
+      success,
+      error
     )
   }
 
-  sendDelayedTransaction(transactionHash) {
+  sendDelayedTransaction(transactionHash, success, error) {
     return this.sendXHR(
       rpc.sendDelayedTransaction(
         this.id,
         this.rpcPassword,
         { transactionHash }
-      )
+      ),
+      success,
+      error
     )
   }
 
@@ -280,28 +323,38 @@ export class TurtleCoinWalletd {
     threshold,
     anonymity,
     addresses,
-    destinationAddress
+    destinationAddress,
+    success,
+    error
   ) {
     return this.sendXHR(
-      this.id,
-      this.rpcPassword,
-      {
-        threshold,
-        anonymity,
-        ...(addresses && { addresses }),
-        ...(destinationAddress && { destinationAddress })
-      }
+      rpc.sendFusionTransaction(
+        this.id,
+        this.rpcPassword,
+        {
+          threshold,
+          anonymity,
+         ...(addresses && { addresses }),
+         ...(destinationAddress && { destinationAddress })
+        }
+      ),
+      success,
+      error
     )
   }
 
-  estimateFusion(threshold, addresses) {
+  estimateFusion(threshold, addresses, success, error) {
     return this.sendXHR(
-      this.id,
-      this.rpcPassword,
-      {
-        threshold,
-        ...(addresses && { addresses })
-      }
+      rpc.estimateFusion(
+        this.id,
+        this.rpcPassword,
+        {
+          threshold,
+          ...(addresses && { addresses })
+        }
+      ),
+      success,
+      error
     )
   }
 }
