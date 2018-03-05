@@ -11,17 +11,20 @@ export class TurtleCoinWalletd {
    * Create an instance of TurtleCoinWalletd for interacting with TurtleCoin's walletd daemon
    * @param { string } host - the hostname of the walletd daemon (must include http://)
    * @param { int } port - the port number the walletd daemon is listening on
-   * @param { string } password - the password for walletd's JSON-RPC interface
+   * @param { string } rpcPassword - the password for walletd's JSON-RPC interface
+   * @param { boolean } logging - switch to activate/deactivate logging
    */
   constructor(
-    host = "http://127.0.0.1",
-    port = 8070,
-    rpcPassword = "test"
+    host        = "http://127.0.0.1",
+    port        = 8070,
+    rpcPassword = "test",
+    logging     = true
   ) {
     this.host        = host
     this.port        = port
     this.rpcPassword = rpcPassword
     this.id          = 0
+    this.logging     = logging
   }
 
   /**
@@ -32,32 +35,37 @@ export class TurtleCoinWalletd {
     return new Promise((resolve, reject) => {
       let url = `${this.host}:${this.port}/json_rpc`,
           id  = this.id
-
-      console.log('************')
-      console.log(`Sending HTTP request to walletd JSON-RPC interface at ${url}...`)
-      console.log(`Request (id: ${id}):`)
-      console.log(payload)
-      console.log('************')
+      if (this.logging) {
+        console.log('************')
+        console.log(`Sending HTTP request to walletd JSON-RPC interface at ${url}...`)
+        console.log(`Request (id: ${id}):`)
+        console.log(payload)
+        console.log('************')
+      }
 
       post({
         url,
         body: payload
       })
         .then(res => {
-          console.log('************')
-          console.log (`Request (id: ${id}) to walletd HTTP JSON-RPC interface successful!`)
-          console.log(res.status)
-          console.log(res.headers)
-          console.log(res.body)
-          console.log('************')
+          if (this.logging) {
+            console.log('************')
+            console.log (`Request (id: ${id}) to walletd HTTP JSON-RPC interface successful!`)
+            console.log(res.status)
+            console.log(res.headers)
+            console.log(res.body)
+            console.log('************')
+          }
 
           success  ? success(res) : resolve(res)
         })
         .catch(err => {
-          console.log('************')
-          console.log(`Error sending request (id: ${id})`)
-          console.log(err)
-          console.log('************')
+          if (this.logging) {
+            console.log('************')
+            console.log(`Error sending request (id: ${id})`)
+            console.log(err)
+            console.log('************')
+          }
 
           error ? error(err) : resolve(err)
         })
