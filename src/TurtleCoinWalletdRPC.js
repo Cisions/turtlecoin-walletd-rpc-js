@@ -13,7 +13,11 @@ export class TurtleCoinWalletd {
    * @param { int } port - the port number the walletd daemon is listening on
    * @param { string } password - the password for walletd's JSON-RPC interface
    */
-  constructor(host, port, rpcPassword) {
+  constructor(
+    host = "http://127.0.0.1",
+    port = 8070,
+    rpcPassword = "test"
+  ) {
     this.host        = host
     this.port        = port
     this.rpcPassword = rpcPassword
