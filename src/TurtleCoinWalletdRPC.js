@@ -43,8 +43,8 @@ export class TurtleCoinWalletd {
           console.log('************')
           console.log (`Request (id: ${id}) to walletd HTTP JSON-RPC interface successful!`)
           console.log(res.status)
-          console.log(res.body)
           console.log(res.headers)
+          console.log(res.body)
           console.log('************')
 
           success  ? success(res.body) : resolve(res.body)
