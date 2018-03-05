@@ -1,7 +1,18 @@
+/**
+ * TurtleCoinWalletdRPC module - provides the TurtleCoinWalletd JSON-RPC wrapper for TurtleCoin's walletd daemon.
+ * @module TurtleCoinWalletd
+ */
 import * as rpc           from './rpcBuilders'
-import { get }            from 'popsicle'
+import { post }           from 'popsicle'
 
+/** Wrapper for TurtleCoin walletd JSON-RPC interface */
 export class TurtleCoinWalletd {
+  /**
+   * Create an instance of TurtleCoinWalletd for interacting with TurtleCoin's walletd daemon
+   * @param { string } host - the hostname of the walletd daemon (must include http://)
+   * @param { int } port - the port number the walletd daemon is listening on
+   * @param { string } password - the password for walletd's JSON-RPC interface
+   */
   constructor(host, port, rpcPassword) {
     this.host        = host
     this.port        = port
@@ -9,7 +20,11 @@ export class TurtleCoinWalletd {
     this.id          = 0
   }
 
-  sendXHR(payload, success, error) {
+  /**
+   * Private method. Sends the actual HTTP request to JSON-RPC daemon
+   * @private
+   */
+  _sendXHR(payload, success, error) {
     return new Promise((resolve, reject) => {
       let url = `${this.host}:${this.port}/json_rpc`,
           id  = this.id
@@ -20,7 +35,10 @@ export class TurtleCoinWalletd {
       console.log(payload)
       console.log('************')
 
-      get(url)
+      post({
+        url,
+        body: payload
+      })
         .then(res => {
           console.log('************')
           console.log (`Request (id: ${id}) to walletd HTTP JSON-RPC interface successful!`)
@@ -45,8 +63,13 @@ export class TurtleCoinWalletd {
     })
   }
 
+  /**
+   * Re-syncs the wallet
+   * @param {string} [viewSecretKey] - Private view key for the wallet
+   * If the viewSecretKey is not provided, reset() resets the wallet and re-syncs it. If the viewSecretKey argument is provided, reset() substitutes the existing wallet with a new one with the specified viewSecretKey and creates an address for it
+   */
   reset(viewSecretKey, sucess, error) {
-    return this.sendXHR(
+    return this._sendXHR(
       rpc.reset(
         this.id,
         this.rpcPassword,
@@ -58,23 +81,33 @@ export class TurtleCoinWalletd {
     )
   }
 
+  /**
+   * Saves the wallet
+   */
   save(success, error) {
-    return this.sendXHR(
+    return this._sendXHR(
       rpc.save(this.id, this.rpcPassword),
       success,
       error
     )
   }
 
+  /**
+   * Gets the wallet's private view key
+   */
   getViewKey(success, error) {
-    return this.sendXHR(
+    return this._sendXHR(
       rpc.getViewKey(this.id, this.rpcPassword),
       success, error
     )
   }
 
+  /**
+   * Gets the spend keys for an address
+   * @param {string} address - Valid address that exists in the container
+   */
   getSpendKeys(address, success, error) {
-    return this.sendXHR(
+    return this._sendXHR(
       rpc.getSpendKeys(
         this.id,
         this.rpcPassword,
@@ -85,23 +118,37 @@ export class TurtleCoinWalletd {
     )
   }
 
+  /**
+   * Gets information about the current RPC wallet state:
+   * blockCount, knownBlockCount, lastBlockHash, and peerCount
+   */
   getStatus(success, error) {
-    return this.sendXHR(
+    return this._sendXHR(
       rpc.getStatus(this.id, this.rpcPassword),
       success,
       error
     )
   }
 
+  /**
+   * Gets an array of addresses in the wallet
+   */
   getAddresses(success, error) {
-    return this.sendXHR(
+    return this._sendXHR(
       rpc.getAddresses(this.id, this.rpcPassword),
       success, error
     )
   }
 
+  /**
+   * Creates an additional address in the wallet
+   * @param {string} [secretSpendKey] - Private spend key. If specified, walletd creates a spend address.
+   * @param {string} [publicSpendKey] - Public spend key. If specified, walletd creates a view address.
+  * Note: If secretSpendKey or publicSpendKey parameters are specified, walletd creates a spend address with a generated spend key.
+  * Note: Both parameters (secretSpendKey, viewSpendKey) cannot be present in a single request.
+  */
   createAddress(secretSpendKey, publicSpendKey, success, error) {
-    return this.sendXHR(
+    return this._sendXHR(
       rpc.createAddress(
         this.id,
         this.rpcPassword,
@@ -116,8 +163,11 @@ export class TurtleCoinWalletd {
     )
   }
 
+  /**
+   *
+   */
   deleteAddress(address, success, error) {
-    return this.sendXHR(
+    return this._sendXHR(
       rpc.deleteAddress(
         this.id,
         this.rpcPassword,
@@ -128,7 +178,7 @@ export class TurtleCoinWalletd {
     )
   }
   getBalance(address, success, error) {
-    return this.sendXHR(
+    return this._sendXHR(
       rpc.getBalance(
         this.id,
         this.rpcPassword,
@@ -141,7 +191,7 @@ export class TurtleCoinWalletd {
   }
 
   getBlockHashes(firstBlockIndex, blockCount, success, error) {
-    return this.sendXHR(
+    return this._sendXHR(
       rpc.getBlockHashes(
         this.id,
         this.rpcPassword,
@@ -164,7 +214,7 @@ export class TurtleCoinWalletd {
     success,
     error
   ) {
-    return this.sendXHR(
+    return this._sendXHR(
       rpc.getTransactionHashes(
         this.id,
         this.rpcPassword,
@@ -189,7 +239,7 @@ export class TurtleCoinWalletd {
     success,
     error
   ) {
-    return this.sendXHR(
+    return this._sendXHR(
       rpc.getTransactions(
         this.id,
         this.rpcPassword,
@@ -207,7 +257,7 @@ export class TurtleCoinWalletd {
   }
 
   getUnconfirmedTransactionHashes(addresses, success, error) {
-    return this.sendXHR(
+    return this._sendXHR(
       rpc.getUnconfirmedTransactionHashes(
         this.id,
         this.rpcPassword,
@@ -220,7 +270,7 @@ export class TurtleCoinWalletd {
   }
 
   getTransaction(transactionHash, success, error) {
-    return this.sendXHR(
+    return this._sendXHR(
       rpc.getTransaction(
         this.id,
         this.rpcPassword,
@@ -243,7 +293,7 @@ export class TurtleCoinWalletd {
     success,
     error
   ) {
-    return this.sendXHR(
+    return this._sendXHR(
       rpc.sendTransaction(
         this.id,
         this.rpcPassword,
@@ -264,7 +314,7 @@ export class TurtleCoinWalletd {
   }
 
   createDelayedTransaction(success, error) {
-    return this.sendXHR(
+    return this._sendXHR(
       rpc.createDelayedTransaction(
         this.id,
         this.rpcPassword,
@@ -285,7 +335,7 @@ export class TurtleCoinWalletd {
   }
 
   getDelayedTransactionHashes(success, error) {
-    return this.sendXHR(
+    return this._sendXHR(
       rpc.getDelayedTransactionHashes(
         this.id,
         this.rpcPassword
@@ -296,7 +346,7 @@ export class TurtleCoinWalletd {
   }
 
   deleteDelayedTransaction(transactionHash, success, error) {
-    return this.sendXHR(
+    return this._sendXHR(
       rpc.deleteDelayedTransaction(
         this.id,
         this.rpcPassword,
@@ -308,7 +358,7 @@ export class TurtleCoinWalletd {
   }
 
   sendDelayedTransaction(transactionHash, success, error) {
-    return this.sendXHR(
+    return this._sendXHR(
       rpc.sendDelayedTransaction(
         this.id,
         this.rpcPassword,
@@ -327,7 +377,7 @@ export class TurtleCoinWalletd {
     success,
     error
   ) {
-    return this.sendXHR(
+    return this._sendXHR(
       rpc.sendFusionTransaction(
         this.id,
         this.rpcPassword,
@@ -344,7 +394,7 @@ export class TurtleCoinWalletd {
   }
 
   estimateFusion(threshold, addresses, success, error) {
-    return this.sendXHR(
+    return this._sendXHR(
       rpc.estimateFusion(
         this.id,
         this.rpcPassword,
