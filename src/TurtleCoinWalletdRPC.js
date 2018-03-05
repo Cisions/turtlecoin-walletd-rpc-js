@@ -47,28 +47,29 @@ export class TurtleCoinWalletd {
         url,
         body: payload
       })
-        .then(res => {
-          if (this.logging) {
-            console.log('************')
-            console.log (`Request (id: ${id}) to walletd HTTP JSON-RPC interface successful!`)
-            console.log(res.status)
-            console.log(res.headers)
-            console.log(res.body)
-            console.log('************')
-          }
+      .then(res => {
+        if (this.logging) {
+          console.log('************')
+          console.log (`Request (id: ${id}) to walletd HTTP JSON-RPC interface successful!`)
+          console.log(res.status)
+          console.log(res.headers)
+          console.log(res.body)
+          console.log('************')
+        }
 
-          success  ? success(res) : resolve(res)
-        })
-        .catch(err => {
-          if (this.logging) {
-            console.log('************')
-            console.log(`Error sending request (id: ${id})`)
-            console.log(err)
-            console.log('************')
-          }
+        res.body = JSON.parse(res.body)
+        success  ? success(res) : resolve(res)
+      })
+      .catch(err => {
+        if (this.logging) {
+          console.log('************')
+          console.log(`Error sending request (id: ${id})`)
+          console.log(err)
+          console.log('************')
+        }
 
-          error ? error(err) : resolve(err)
-        })
+        error ? error(err) : resolve(err)
+      })
 
       this.id++
 
