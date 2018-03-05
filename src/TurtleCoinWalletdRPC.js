@@ -47,7 +47,7 @@ export class TurtleCoinWalletd {
           console.log(res.body)
           console.log('************')
 
-          success  ? success(res.body) : resolve(res.body)
+          success  ? success(res) : resolve(res)
         })
         .catch(err => {
           console.log('************')
