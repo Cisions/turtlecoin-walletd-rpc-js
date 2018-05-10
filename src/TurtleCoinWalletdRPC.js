@@ -420,4 +420,16 @@ export class TurtleCoinWalletd {
       error
     )
   }
+
+  getMnemonicSeed(address, success, error) {
+    return this._sendXHR(
+      rpc.getMnemonicSeed(
+        this.id,
+        this.rpcPassword,
+        { address }
+      ),
+      success,
+      error
+    )
+  }
 }
