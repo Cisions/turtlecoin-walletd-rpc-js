@@ -238,3 +238,14 @@ export function estimateFusion(
     ...arguments
   )
 }
+
+export function getMnemonicSeed(
+  id,
+  rpcPassword,
+  params
+) {
+  return buildRPC(
+    "getMnemonicSeed",
+    ...arguments
+  )
+}
