@@ -81,7 +81,7 @@ export class TurtleCoinWalletd {
    * @param {string} [viewSecretKey] - Private view key for the wallet
    * If the viewSecretKey is not provided, reset() resets the wallet and re-syncs it. If the viewSecretKey argument is provided, reset() substitutes the existing wallet with a new one with the specified viewSecretKey and creates an address for it
    */
-  reset(viewSecretKey, sucess, error) {
+  reset(viewSecretKey, success, error) {
     return this._sendXHR(
       rpc.reset(
         this.id,
@@ -342,7 +342,7 @@ export class TurtleCoinWalletd {
           ...(changeAddress && { changeAddress })
         }
       ),
-      sucess,
+      success,
       error
     )
   }
