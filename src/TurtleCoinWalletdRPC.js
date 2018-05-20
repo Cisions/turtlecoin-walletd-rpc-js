@@ -326,7 +326,18 @@ export class TurtleCoinWalletd {
     )
   }
 
-  createDelayedTransaction(success, error) {
+  createDelayedTransaction(
+    anonymity,
+    transfers,
+    fee,
+    addresses,
+    unlockTime,
+    extra,
+    paymentId,
+    changeAddress,
+    success,
+    error
+  ) {
     return this._sendXHR(
       rpc.createDelayedTransaction(
         this.id,
